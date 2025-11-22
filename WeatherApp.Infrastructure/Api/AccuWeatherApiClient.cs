@@ -13,4 +13,12 @@ public class AccuWeatherApiClient(HttpClient client)
 
         return currrentConditions;
     }
+
+    public async Task<List<City>?> GetCitiesAutoCompleteAsync(string query)
+    {
+        var cities = 
+            await client.GetFromJsonAsync<List<City>>($"/locations/v1/cities/autocomplete?q={query}");
+
+        return cities;
+    }
 }
