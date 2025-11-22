@@ -2,7 +2,7 @@
 
 namespace WeatherApp.WPF.ViewModels;
 
-internal abstract class ViewModelBase : INotifyPropertyChanged
+public abstract class ViewModelBase : INotifyPropertyChanged
 {
     public virtual void Dispose() { }
 

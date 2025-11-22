@@ -17,6 +17,7 @@ public partial class App : Application
     public static IHostBuilder CreateHostBuilder(string[]? args = null) =>
         Host.CreateDefaultBuilder(args)
             .AddInfrastructure()
+            .AddViewModels()
             .AddViews();
 
     protected override void OnStartup(StartupEventArgs e)
