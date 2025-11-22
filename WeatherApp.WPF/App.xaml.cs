@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Windows;
+using WeatherApp.Infrastructure;
 
 namespace WeatherApp.WPF;
 
@@ -15,6 +16,7 @@ public partial class App : Application
 
     public static IHostBuilder CreateHostBuilder(string[]? args = null) =>
         Host.CreateDefaultBuilder(args)
+            .AddInfrastructure()
             .AddViews();
 
     protected override void OnStartup(StartupEventArgs e)
