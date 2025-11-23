@@ -45,7 +45,9 @@
             </Grid.ColumnDefinitions>
             <StackPanel Margin="0,10">
                 <TextBlock
-                           Text="{Binding SelectedCity.LocalizedName}"
+                           Text="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                AncestorType={x:Type Window}}, Path=DataContext.SelectedCity.LocalizedName}"
+                           FontWeight="Bold"
                            Foreground="#f4f4f8"
                            FontSize="20"
                            Margin="20,0"/>
