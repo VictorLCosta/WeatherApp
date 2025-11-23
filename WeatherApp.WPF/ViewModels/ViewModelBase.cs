@@ -2,6 +2,8 @@
 
 namespace WeatherApp.WPF.ViewModels;
 
+public delegate TViewModel CreateViewModel<TViewModel>() where TViewModel : ViewModelBase;
+
 public abstract class ViewModelBase : INotifyPropertyChanged
 {
     public virtual void Dispose() { }

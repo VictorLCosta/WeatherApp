@@ -15,7 +15,7 @@ internal static class Extensions
 
             services.AddHttpClient<AccuWeatherApiClient>(c =>
             {
-                c.DefaultRequestHeaders.Add("Authorization", apiKey);
+                c.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
 
                 c.BaseAddress = new Uri("https://dataservice.accuweather.com");
             });

@@ -6,21 +6,21 @@ namespace WeatherApp.WPF;
 
 internal static class Extensions
 {
-    internal static IHostBuilder AddViews(this IHostBuilder host)
+    internal static IHostBuilder AddViewModels(this IHostBuilder host)
     {
         host.ConfigureServices(services =>
         {
-            services.AddSingleton(s => new MainWindow());
+            services.AddTransient<WeatherViewModel>();
         });
 
         return host;
     }
 
-    internal static IHostBuilder AddViewModels(this IHostBuilder host) 
+    internal static IHostBuilder AddViews(this IHostBuilder host)
     {
         host.ConfigureServices(services =>
         {
-            services.AddTransient<WeatherViewModel>();
+            services.AddSingleton(s => new MainWindow(s.GetRequiredService<WeatherViewModel>()));
         });
 
         return host;

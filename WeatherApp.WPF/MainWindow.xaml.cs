@@ -5,10 +5,10 @@ namespace WeatherApp.WPF;
 
 public partial class MainWindow : Window
 {
-    public MainWindow()
+    public MainWindow(WeatherViewModel vm)
     {
         InitializeComponent();
 
-        DataContext = new WeatherViewModel();
+        DataContext = vm;
     }
 }

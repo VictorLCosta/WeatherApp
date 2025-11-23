@@ -1,5 +1,8 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
+using WeatherApp.Infrastructure.Api;
 using WeatherApp.Infrastructure.ApiContracts.Responses;
+using WeatherApp.WPF.Commands;
 
 namespace WeatherApp.WPF.ViewModels;
 
@@ -38,6 +41,13 @@ public class WeatherViewModel : ViewModelBase
             currrentConditions = value;
             OnPropertyChanged(nameof(CurrrentConditions));
         }
+    }
+
+    public ICommand SearchCities { get; set; }
+
+    public WeatherViewModel(AccuWeatherApiClient apiClient)
+    {
+        SearchCities = new SearchCommand(this, apiClient);
     }
 
 }
