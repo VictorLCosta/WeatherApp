@@ -28,26 +28,31 @@ public class WeatherViewModel : ViewModelBase
         {
             _selectedCity = value;
             OnPropertyChanged(nameof(SelectedCity));
+            GetCurrentCondition.Execute(_selectedCity);
         }
     }
 
-    private ObservableCollection<CurrrentCondition> currrentConditions = [];
+    private CurrrentCondition? _currrentCondition;
 
-    public ObservableCollection<CurrrentCondition> CurrrentConditions
+    public CurrrentCondition? CurrrentCondition
     {
-        get { return currrentConditions; }
+        get { return _currrentCondition; }
         set
         {
-            currrentConditions = value;
-            OnPropertyChanged(nameof(CurrrentConditions));
+            _currrentCondition = value;
+            OnPropertyChanged(nameof(CurrrentCondition));
         }
     }
 
+    public ObservableCollection<City> CitiesList { get; set; } = [];
+
     public ICommand SearchCities { get; set; }
+    public ICommand GetCurrentCondition { get; set; }
 
     public WeatherViewModel(AccuWeatherApiClient apiClient)
     {
         SearchCities = new SearchCommand(this, apiClient);
+        GetCurrentCondition = new GetCurrentConditionCommand(this, apiClient);
     }
 
 }

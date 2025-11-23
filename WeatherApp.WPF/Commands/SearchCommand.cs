@@ -1,4 +1,6 @@
-﻿using WeatherApp.Infrastructure.Api;
+﻿using System.Collections.ObjectModel;
+using WeatherApp.Infrastructure.Api;
+using WeatherApp.Infrastructure.ApiContracts.Responses;
 using WeatherApp.WPF.ViewModels;
 
 namespace WeatherApp.WPF.Commands;
@@ -19,6 +21,13 @@ public class SearchCommand(WeatherViewModel weatherViewModel, AccuWeatherApiClie
     {
         var query = parameter?.ToString();
 
-        var cities = await apiClient.GetCitiesAutoCompleteAsync(query!);
+        var cities = await apiClient.GetCitiesAutoCompleteAsync(query!) ?? [];
+
+        weatherViewModel.CitiesList.Clear();
+
+        foreach (var item in cities)
+        {
+            weatherViewModel.CitiesList.Add(item);
+        }
     }
 }

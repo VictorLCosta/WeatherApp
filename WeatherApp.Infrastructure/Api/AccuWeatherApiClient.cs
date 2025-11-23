@@ -6,12 +6,12 @@ namespace WeatherApp.Infrastructure.Api;
 
 public class AccuWeatherApiClient(HttpClient client)
 {
-    public async Task<List<CurrrentCondition>?> GetCurrrentConditionAsync(string locationKey)
+    public async Task<CurrrentCondition?> GetCurrrentConditionAsync(string locationKey)
     {
-        List<CurrrentCondition>? currrentConditions = 
+        var currrentConditions = 
             await client.GetFromJsonAsync<List<CurrrentCondition>>($"/currentconditions/v1/{locationKey}");
 
-        return currrentConditions;
+        return currrentConditions?[0];
     }
 
     public async Task<List<City>?> GetCitiesAutoCompleteAsync(string query)
